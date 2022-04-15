@@ -12,6 +12,7 @@ public class CoffeeMachine {
         String beansRemainderMessage = "Remainder of beans is ";
         String milkRemainderMessage = "Remainder of milk is ";
         String sugarRemainderMessage = "Remainder of sugar is ";
+        String helloChooseMessage = "Hello!\nChoose coffee u would like to drink\n1 - espresso\n2 - americano\n3 - cappuccino\n4 - latte";
         double milk = 1000;
         double beans = 400;
         double water = 3000;
@@ -22,17 +23,12 @@ public class CoffeeMachine {
         //cappuccino - water 90, beans 4, milk 40
         //latte - water 100, beans 5, milk 50
 
-        System.out.println("Hello!\nChoose coffee u would like to drink");
-        System.out.println("1 - espresso");
-        System.out.println("2 - americano");
-        System.out.println("3 - cappuccino");
-        System.out.println("4 - latte");
+        System.out.println(helloChooseMessage);
         int coffee = myScan.nextInt();
-        System.out.println("How much g of sugar u want to add?");
-        double sugarAmount = myScan.nextDouble();
-        if (sugar < sugarAmount){
-            System.out.println("Please repeat and choose amount less than 200g");
-        }else
+        double sugarAmount = 1 + (Math.random() * 19);
+        //if (sugar < sugarAmount){
+            //System.out.println("Please repeat and choose amount less than 200g");
+        //}else
 
         switch (coffee){
             case 1:
