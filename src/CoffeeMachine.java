@@ -7,6 +7,8 @@ public class CoffeeMachine {
         final String americano = "Americano";
         final String cappuccino = "Cappuccino";
         final String latte = "Latte";
+        char gram = 'g';
+        String ml = "ml";
         String chooseMessage = "You chase ";
         String watterRemainderMessage = "Remainder of water is ";
         String beansRemainderMessage = "Remainder of beans is ";
@@ -33,29 +35,33 @@ public class CoffeeMachine {
         switch (coffee){
             case 1:
                 System.out.println(chooseMessage + espresso);
-                System.out.println(watterRemainderMessage + (water - 20) + "ml");
-                System.out.println(beansRemainderMessage + (beans - 4) + "g");
-                System.out.println(sugarRemainderMessage + (sugar - sugarAmount) + "g");
+                double waterRemainder = water - 20;
+                double beansRemainder = beans - 4;
+                double sugarRemainder = sugar - sugarAmount;
+                System.out.println(watterRemainderMessage + waterRemainder + ml + "\n" + beansRemainderMessage + beansRemainder + gram + "\n" + sugarRemainderMessage + sugarRemainder + gram);
                 break;
             case 2:
                 System.out.println(chooseMessage + americano);
-                System.out.println(watterRemainderMessage + (water - 50) + "ml");
-                System.out.println(beansRemainderMessage + (beans - 4) + "g");
-                System.out.println(sugarRemainderMessage + (sugar - sugarAmount) + "g");
+                waterRemainder = water - 50;
+                beansRemainder = beans - 4;
+                sugarRemainder = sugar - sugarAmount;
+                System.out.println(watterRemainderMessage + waterRemainder + ml + "\n" + beansRemainderMessage + beansRemainder + gram + "\n" + sugarRemainderMessage + sugarRemainder + gram);
                 break;
             case 3:
                 System.out.println(chooseMessage + cappuccino);
-                System.out.println(watterRemainderMessage + (water - 90) + "ml");
-                System.out.println(beansRemainderMessage + (beans - 4) + "g");
-                System.out.println(milkRemainderMessage + (milk - 40) + "ml");
-                System.out.println(sugarRemainderMessage + (sugar - sugarAmount) + "g");
+                waterRemainder = water - 90;
+                beansRemainder = beans - 4;
+                double milkRemainder = milk - 40;
+                sugarRemainder = sugar - sugarAmount;
+                System.out.println(watterRemainderMessage + waterRemainder + ml + "\n" + beansRemainderMessage + beansRemainder + gram + "\n" + milkRemainderMessage + milkRemainder + ml + "\n" + sugarRemainderMessage + sugarRemainder + gram);
                 break;
             case 4:
                 System.out.println(chooseMessage + latte);
-                System.out.println(watterRemainderMessage + (water - 100) + "ml");
-                System.out.println(beansRemainderMessage + (beans - 5) + "g");
-                System.out.println(milkRemainderMessage + (milk - 50) + "ml");
-                System.out.println(sugarRemainderMessage + (sugar - sugarAmount) + "g");
+                waterRemainder = water - 100;
+                beansRemainder = beans - 5;
+                milkRemainder = milk - 50;
+                sugarRemainder = sugar - sugarAmount;
+                System.out.println(watterRemainderMessage + waterRemainder + ml + "\n" + beansRemainderMessage + beansRemainder + gram + "\n" + milkRemainderMessage + milkRemainder + ml + "\n" + sugarRemainderMessage + sugarRemainder + gram);
                 break;
             default:
                 System.out.println("Error !");
