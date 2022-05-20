@@ -1,15 +1,21 @@
 import java.util.Scanner;
 
 public class CoffeeMachine {
+    static Scanner myScan = new Scanner(System.in);
+    static double milk = 1000;
+    static double beans = 400;
+    static double water = 3000;
+    static double sugar = 200;
+    static final String ESPRESSO = "Espresso";
+    static final String AMERICANO = "Americano";
+    static final String CAPPUCCINO = "Cappuccino";
+    static final String LATTE = "Latte";
+    static String chooseMessage = "You chase ";
+    static double sugarAmount = generateSugarNumber();
+
     public static void main(String[] args) {
-        Scanner myScan = new Scanner(System.in);
-        final String espresso = "Espresso";
-        final String americano = "Americano";
-        final String cappuccino = "Cappuccino";
-        final String latte = "Latte";
         char gram = 'g';
         String ml = "ml";
-        String chooseMessage = "You chase ";
         String waterRemainderMessage = "Remainder of water is ";
         String beansRemainderMessage = "Remainder of beans is ";
         String milkRemainderMessage = "Remainder of milk is ";
@@ -17,68 +23,26 @@ public class CoffeeMachine {
         String helloChooseMessage = "Choose coffee u would like to drink\n1 - espresso\n2 - americano\n" +
                 "3 - cappuccino\n4 - latte\n5 - exit";
 
-        double milk = 1000;
-        double beans = 400;
-        double water = 3000;
-        double sugar = 200;
 
         //espresso - water 20, beans 4
         //americano - water 50, beans 4
         //cappuccino - water 90, beans 4, milk 40
         //latte - water 100, beans 5, milk 50
+        
         System.out.println("Hello!");
         while (true) {
             giveAChoice(helloChooseMessage);
             int coffee = askForCoffee(myScan);
-            double sugarAmount = generateSugarNumber();
-            //if (sugar < sugarAmount){
-            //System.out.println("Please repeat and choose amount less than 200g");
-            //}else
-            if (cycleToExitEarly(coffee, water, sugar, milk, beans) == false) {
+            if (!cycleToExitEarly(coffee)) {
                 break;
             }
-
-
-
-//            switch (coffee) {
-//                case 1:
-//                    System.out.println(chooseMessage + espresso);
-//                    water -= 20;
-//                    beans -= 4;
-//                    sugar -= sugarAmount;
-//                    break;
-//                case 2:
-//                    System.out.println(chooseMessage + americano);
-//                    water -= 50;
-//                    beans -= 4;
-//                    sugar -= sugarAmount;
-//                    break;
-//                case 3:
-//                    System.out.println(chooseMessage + cappuccino);
-//                    water -= 90;
-//                    beans -= 4;
-//                    milk -= 40;
-//                    sugar -= sugarAmount;
-//                    break;
-//                case 4:
-//                    System.out.println(chooseMessage + latte);
-//                    water -= 100;
-//                    beans -= 5;
-//                    milk -= 50;
-//                    sugar -= sugarAmount;
-//                    break;
-//                default:
-//                    System.out.println("Error !");
-//
-//            }
+            makeCoffeeDependingOnChoice(coffee);
+            remindAboutGoods(waterRemainderMessage, ml, beansRemainderMessage, gram, milkRemainderMessage,
+                    sugarRemainderMessage);
 
 
         }
-        System.out.println(waterRemainderMessage + water + ml + "\n" + beansRemainderMessage + beans + gram +
-                "\n" + milkRemainderMessage + milk + ml + "\n" + sugarRemainderMessage + sugar + gram);
-
         System.out.println("Have a nice day\nBye)");
-
 
     }
 
@@ -87,16 +51,14 @@ public class CoffeeMachine {
     }
 
     static int askForCoffee(Scanner myScan) {
-        int coffee = myScan.nextInt();
-        return coffee;
+        return myScan.nextInt();
     }
 
     static double generateSugarNumber() {
-        double sugarAmount = 1 + (int) (Math.random() * 19);
-        return sugarAmount;
+        return 1 + (int) (Math.random() * 19);
     }
 
-    static boolean cycleToExitEarly(int coffee, double water, double sugar, double milk, double beans) {
+    static boolean cycleToExitEarly(int coffee) {
         boolean flag = true;
         if (coffee == 5) {
             flag = false;
@@ -112,58 +74,53 @@ public class CoffeeMachine {
                 makeEspresso();
                 break;
             case 2:
-                System.out.println(chooseMessage + americano);
-                water -= 50;
-                beans -= 4;
-                sugar -= sugarAmount;
+                makeAmericano();
                 break;
             case 3:
-                System.out.println(chooseMessage + cappuccino);
-                water -= 90;
-                beans -= 4;
-                milk -= 40;
-                sugar -= sugarAmount;
+                makeCappuccino();
                 break;
             case 4:
-                System.out.println(chooseMessage + latte);
-                water -= 100;
-                beans -= 5;
-                milk -= 50;
-                sugar -= sugarAmount;
+                makeLatte();
                 break;
             default:
                 System.out.println("Error !");
 
         }
     }
-    static void makeEspresso(String espresso, double sugar, double water, double beans, double sugarAmount,
-                             String chooseMessage){
-        System.out.println(chooseMessage + espresso);
+
+    static void makeEspresso() {
+        System.out.println(chooseMessage + ESPRESSO);
         water -= 20;
         beans -= 4;
         sugar -= sugarAmount;
     }
-    static void makeAmericano(String americano, double sugar, double water, double beans, double sugarAmount,
-                              String chooseMessage){
-        System.out.println(chooseMessage + americano);
+
+    static void makeAmericano() {
+        System.out.println(chooseMessage + AMERICANO);
         water -= 50;
         beans -= 4;
         sugar -= sugarAmount;
     }
-    static void makeCappuccino(String cappuccino, double sugar, double water, double beans, double sugarAmount,
-                               String chooseMessage, double milk){
-        System.out.println(chooseMessage + cappuccino);
+
+    static void makeCappuccino() {
+        System.out.println(chooseMessage + CAPPUCCINO);
         water -= 90;
         beans -= 4;
         milk -= 40;
         sugar -= sugarAmount;
     }
-    static void makeLatte(String latte, double sugar, double water, double beans, double sugarAmount,
-                          String chooseMessage, double milk){
-        System.out.println(chooseMessage + latte);
+
+    static void makeLatte() {
+        System.out.println(chooseMessage + LATTE);
         water -= 100;
         beans -= 5;
         milk -= 50;
         sugar -= sugarAmount;
+    }
+
+    static void remindAboutGoods(String waterRemainderMessage, String ml, String beansRemainderMessage, char gram,
+                                 String milkRemainderMessage, String sugarRemainderMessage) {
+        System.out.println(waterRemainderMessage + water + ml + "\n" + beansRemainderMessage + beans + gram +
+                "\n" + milkRemainderMessage + milk + ml + "\n" + sugarRemainderMessage + sugar + gram);
     }
 }
