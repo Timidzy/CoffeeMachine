@@ -12,23 +12,28 @@ public class CoffeeMachine {
     static final String LATTE = "Latte";
     static String chooseMessage = "You chase ";
     static double sugarAmount = generateSugarNumber();
+    static char gram = 'g';
+    static String ml = "ml";
+    static String waterRemainderMessage = "Remainder of water is ";
+    static String beansRemainderMessage = "Remainder of beans is ";
+    static String milkRemainderMessage = "Remainder of milk is ";
+    static String sugarRemainderMessage = "Remainder of sugar is ";
+    static String helloChooseMessage = "Choose coffee u would like to drink\n1 - espresso\n2 - americano\n" +
+            "3 - cappuccino\n4 - latte\n5 - exit";
 
     public static void main(String[] args) {
-        char gram = 'g';
-        String ml = "ml";
-        String waterRemainderMessage = "Remainder of water is ";
-        String beansRemainderMessage = "Remainder of beans is ";
-        String milkRemainderMessage = "Remainder of milk is ";
-        String sugarRemainderMessage = "Remainder of sugar is ";
-        String helloChooseMessage = "Choose coffee u would like to drink\n1 - espresso\n2 - americano\n" +
-                "3 - cappuccino\n4 - latte\n5 - exit";
-
+        startCoffeeMachine();
 
         //espresso - water 20, beans 4
         //americano - water 50, beans 4
         //cappuccino - water 90, beans 4, milk 40
         //latte - water 100, beans 5, milk 50
+
         
+
+    }
+
+    private static void startCoffeeMachine() {
         System.out.println("Hello!");
         while (true) {
             giveAChoice(helloChooseMessage);
@@ -43,7 +48,6 @@ public class CoffeeMachine {
 
         }
         System.out.println("Have a nice day\nBye)");
-
     }
 
     static void giveAChoice(String helloMessage) {
